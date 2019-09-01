@@ -63,19 +63,15 @@
   )
 
 (defn move-snake [{:keys [dx dy body growcount] :as state}]
-"Does not check to see if snake hits wall or self"
-(t/info "TESTIN")
-(print  growcount)
-(let [[x y] (first body)
-      newhead [(+ x dx) (+ y dy)]
-      nb (cons newhead body)
-      newbody (if (pos? growcount) (drop-last nb) nb)
-      n (assoc state :body newbody)
-      newstate (assoc n :growcount (if (pos? growcount) (dec growcount) growcount))
-      
-      ]
-  newstate
+  "Does not check to see if snake hits wall or self"
+  (let [[x y] (first body)
+        newhead [(+ x dx) (+ y dy)]
+        nb (cons newhead body)
+        newbody (if (pos? growcount) nb (drop-last nb) )
+        n (assoc state :body newbody)
+        newstate (assoc n :growcount (if (pos? growcount) (dec growcount) growcount))
+        ]
+    newstate
+    )
+
   )
-
-)
-
