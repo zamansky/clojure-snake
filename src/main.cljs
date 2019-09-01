@@ -29,6 +29,10 @@
   )
 
 (defn handle-keys [e]
+  ;; up 38
+  ;; down 40 
+  ;; left 39
+  ;; right 17
   (let [k (.-keyCode e)]
     (print k))
   (print "SOMETHING"))
