@@ -32,7 +32,8 @@
   (let [k (.-keyCode e)]
     (print k))
   (print "SOMETHING"))
-
+(defn get-focus [e]
+  (print "HELLO"))
   
 (defn canvas [state]
   (let [state state]
@@ -42,14 +43,14 @@
       :component-did-update draw-cells
       :reagent-render (fn  []
                         @state
-                        [:canvas {
-                                  :on-keydown handle-keys
-                                  :id "c" :width 500 :height 500 :style {:border "2px solid green"}}])
+                        [:canvas { :on-keyDown handle-keys
+                                  ;;:on-mouseOver get-focus
+                                  :tabindex '0' :id "c" :width 500 :height 500 :style {:border "2px solid green"}}])
       }
      )))
 
 (defn main-component []
-  [:div
+  [:div 
    [canvas state]
    [:hr]
    [:p "Interface here"]
