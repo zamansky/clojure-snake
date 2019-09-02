@@ -75,3 +75,24 @@
     )
 
   )
+
+(defn full-turn [{:keys [target body] :as state}]
+  (let [ moved-state (move-snake state)
+        [x y] (first (:body moved-state))
+        ate-state (if (= [x y] target)
+                    (-> moved-state
+                        spawn-food
+                        (assoc :growcount 5)
+                        )
+                    moved-state
+                    )
+        new-state (if (or (hit-wall? ate-state) (hit-self? ate-state))
+                    (-> ate-state
+                        (assoc :running? false)
+                        (assoc :alive? false)
+                        )
+                    ate-state
+                    )
+        ]
+    new-state
+    ))
